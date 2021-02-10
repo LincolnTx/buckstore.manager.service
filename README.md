@@ -1,21 +1,21 @@
 ## Manager
-Api de respons·vel por todas as tarefas de gerir estoque e controlar acessos, criar promoÁıes, etc;
+Api de respons√°vel por todas as tarefas de gerir estoque e controlar acessos, criar promo√ß√µes, etc;
 
 
 ### Executar
-Primeiramente È necess·rio rodar o comando dotnet run na pasta raiz do Projeto.
-ApÛs isso executar o comando dotnet run no camonha src/buckstore.manager.service.api.v1
+Primeiramente √© necess√°rio rodar o comando dotnet run na pasta raiz do Projeto.
+Ap√≥s isso executar o comando dotnet run no camonha src/buckstore.manager.service.api.v1
 
 ### Sobre
-Esta È a API respons·vel pelos ServiÁos de Gerenciamento de Produtos e afins do projeto BuckStore feito para a disciplina de Tcc. 
+Esta √© a API respons√°vel pelos Servi√ßos de Gerenciamento de Produtos e afins do projeto BuckStore feito para a disciplina de Tcc. 
 Desenvolvido  por
 [Lincoln Samuel F Teixeira](https://github.com/LincolnTx).
 
-### Outros repositÛrios desse projeto
+### Outros reposit√≥rios desse projeto
 Frontdend: [BuckStore Fronted](https://github.com/LincolnTx/buckstore-frontend)
 
 Auth Api: [BuckStore Auth](https://github.com/LincolnTx/buckstore.auth.service)
 
-Api2:
+Api2: [BuckStore Products](https://github.com/LincolnTx/buckstore.products.service)
 
-Api3:
+Api3: [BuckStore Orders](https://github.com/LincolnTx/buckstore.orders.service)
