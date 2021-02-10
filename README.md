@@ -16,6 +16,6 @@ Frontdend: [BuckStore Fronted](https://github.com/LincolnTx/buckstore-frontend)
 
 Auth Api: [BuckStore Auth](https://github.com/LincolnTx/buckstore.auth.service)
 
-Api2: [BuckStore Products](https://github.com/LincolnTx/buckstore.products.service)
+Products Api: [BuckStore Products](https://github.com/LincolnTx/buckstore.products.service)
 
-Api3: [BuckStore Orders](https://github.com/LincolnTx/buckstore.orders.service)
+Orders Api: [BuckStore Orders](https://github.com/LincolnTx/buckstore.orders.service)
