@@ -6,7 +6,7 @@
 
 namespace buckstore.manager.service.api.v1.Controllers
 {
-	[Route("your-project-name/[controller]")]
+	[Route("manager/[controller]")]
 	[ServiceFilter(typeof(GlobalExceptionFilterAttribute))]
 	public class BaseController : Controller
 	{

@@ -45,11 +45,11 @@ namespace buckstore.manager.service.api.v1
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.UseHttpsRedirection();
+			//app.UseHttpsRedirection();
+			//app.UseAuthorization();
 
+			app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 			app.UseRouting();
-
-			app.UseAuthorization();
 			app.UseSwaggerSetup();
 
 			app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
