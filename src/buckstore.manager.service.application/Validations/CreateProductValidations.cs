@@ -1,5 +1,7 @@
-﻿using FluentValidation;
+﻿using System.Linq;
+using FluentValidation;
 using buckstore.manager.service.application.Commands;
+using buckstore.manager.service.domain.Aggregates.ProductAggregate;
 
 namespace buckstore.manager.service.application.Validations
 {
@@ -49,7 +51,17 @@ namespace buckstore.manager.service.application.Validations
 
         protected void ValidateCategory()
         {
-            // verificar se tem como validar se o valor esta entre o meu enumeration
+            RuleFor(product => product.Category)
+                .Must(CategoryValidate)
+                .WithMessage("O id de categoria informado não esta correto.")
+                .WithErrorCode("006");
+        }
+
+        private bool CategoryValidate(int category)
+        {
+            var availableCategories = ProductCategory.List().Select(cat => cat.Id);
+
+            return availableCategories.Contains(category);
         }
     }
 }

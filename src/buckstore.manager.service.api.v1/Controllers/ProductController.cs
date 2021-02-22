@@ -16,7 +16,7 @@ namespace buckstore.manager.service.api.v1.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand createProductCommand)
         {
             var commandResponse = await _mediator.Send(createProductCommand);
