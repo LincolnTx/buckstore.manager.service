@@ -13,13 +13,13 @@ namespace buckstore.manager.service.infrastructure.Data.Mappings.Database
             builder.HasKey(category => category.Id);
 
             builder.Property(category => category.Id)
-                .HasColumnName("id")
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("id");
 
             builder.Property(category => category.Name)
                 .HasMaxLength(80)
-                .HasColumnName("description")
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("description");
 
             builder.HasData(ProductCategory.Gamer, ProductCategory.SmartPhones, ProductCategory.Pc,
                 ProductCategory.Gadgets, ProductCategory.Hardware, ProductCategory.Office);

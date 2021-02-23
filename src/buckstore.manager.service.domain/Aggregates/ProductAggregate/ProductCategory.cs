@@ -11,8 +11,8 @@ namespace buckstore.manager.service.domain.Aggregates.ProductAggregate
         public static ProductCategory SmartPhones = new ProductCategory(2, nameof(SmartPhones));
         public static ProductCategory Pc = new ProductCategory(3, "Computador");
         public static ProductCategory Gadgets = new ProductCategory(4, "Periféricos");
-        public static ProductCategory Hardware = new ProductCategory(4, nameof(Hardware));
-        public static ProductCategory Office = new ProductCategory(4, nameof(Office));
+        public static ProductCategory Hardware = new ProductCategory(5, nameof(Hardware));
+        public static ProductCategory Office = new ProductCategory(6, nameof(Office));
 
        public ProductCategory(int id, string name) : base(id, name)
        {
