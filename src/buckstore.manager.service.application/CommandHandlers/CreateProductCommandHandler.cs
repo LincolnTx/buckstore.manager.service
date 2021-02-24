@@ -26,8 +26,8 @@ namespace buckstore.manager.service.application.CommandHandlers
                 return false;
             }
 
-            var product = new Product(request.Name, request.Description, request.Price, request.InitialStock,
-                request.Category);
+            var product = new Product(request.Name.ToLowerInvariant(), request.Description, request.Price, 
+                request.InitialStock, request.Category);
             
             _productRepository.Add(product);
 

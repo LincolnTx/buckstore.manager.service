@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using buckstore.manager.service.application.Commands;
+using buckstore.manager.service.application.Queries;
 using buckstore.manager.service.domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,14 @@ namespace buckstore.manager.service.api.v1.Controllers
             var commandResponse = await _mediator.Send(createProductCommand);
 
             return Response(200, commandResponse);
+        }
+
+        [HttpGet("list")]
+        public async Task<IActionResult> ListProducts([FromQuery] int quantity)
+        {
+            var queryResponse = await _mediator.Send(new ListProductsQuery(quantity));
+
+            return Response(200, queryResponse);
         }
     }
 }
