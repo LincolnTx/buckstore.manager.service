@@ -11,7 +11,7 @@ namespace buckstore.manager.service.api.v1.Controllers
     {
         private readonly IMediator _mediator;
         
-        protected ProductController(INotificationHandler<ExceptionNotification> notifications, IMediator mediator) : base(notifications)
+        public ProductController(INotificationHandler<ExceptionNotification> notifications, IMediator mediator) : base(notifications)
         {
             _mediator = mediator;
         }
