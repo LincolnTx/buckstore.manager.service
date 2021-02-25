@@ -26,9 +26,9 @@ namespace buckstore.manager.service.api.v1.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> ListProducts([FromQuery] int quantity)
+        public async Task<IActionResult> ListProducts([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
-            var queryResponse = await _mediator.Send(new ListProductsQuery(quantity));
+            var queryResponse = await _mediator.Send(new ListProductsQuery(pageNumber, pageSize));
 
             return Response(200, queryResponse);
         }

@@ -21,14 +21,16 @@ namespace buckstore.manager.service.application.QueryHandlers
             using (IDbConnection dbConnection = DbConnection)
             {
                 DefaultTypeMap.MatchNamesWithUnderscores = true;
-                const string sqlCommand = "SELECT p.\"Id\", p.description ,p.name, p.price, p.stock_quantity, "+
+                const string sqlCommand = "SELECT p.\"Id\", p.description ,p.name, p.price, p.stock_quantity, " +
                                           "pc.id \"categoryId\", pc.description category FROM manager.product p  " +
                                           "LEFT JOIN manager.product_category pc " +
-                                          "ON p.\"_categoryId\" = pc.id LIMIT @limitSize";
+                                          "ON p.\"_categoryId\" = pc.id " +
+                                          "ORDER BY p.\"Id\" OFFSET @pageNumber ROWS FETCH NEXT @pageSize ROWS ONLY";
 
                 var data = await dbConnection.QueryAsync<ProductDto>(sqlCommand, new
                 {
-                    limitSize = request.Quantity
+                    pageSize = request.PageSize,
+                    pageNumber = request.PageNumber
                 });
 
                 return new ListProductResponse(data);
