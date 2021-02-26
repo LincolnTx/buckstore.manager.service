@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using buckstore.manager.service.application.Commands;
 using buckstore.manager.service.application.Queries;
 using buckstore.manager.service.domain.Exceptions;
@@ -22,7 +23,7 @@ namespace buckstore.manager.service.api.v1.Controllers
         {
             var commandResponse = await _mediator.Send(createProductCommand);
 
-            return Response(200, commandResponse);
+            return Response(201, commandResponse);
         }
 
         [HttpGet("list")]
@@ -31,6 +32,14 @@ namespace buckstore.manager.service.api.v1.Controllers
             var queryResponse = await _mediator.Send(new ListProductsQuery(pageNumber, pageSize));
 
             return Response(200, queryResponse);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] Guid productCode)
+        {
+            var response = await _mediator.Send(new FindProductByIdQuery(productCode));
+
+            return Response(200, response);
         }
     }
 }
