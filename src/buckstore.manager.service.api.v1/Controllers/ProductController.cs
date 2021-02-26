@@ -41,5 +41,13 @@ namespace buckstore.manager.service.api.v1.Controllers
 
             return Response(200, response);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateProductCommand updateProductCommand)
+        {
+            var response = await _mediator.Send(updateProductCommand);
+
+            return Response(200, response);
+        }
     }
 }
