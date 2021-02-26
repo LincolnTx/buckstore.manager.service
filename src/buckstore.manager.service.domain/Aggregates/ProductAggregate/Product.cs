@@ -45,6 +45,14 @@ namespace buckstore.manager.service.domain.Aggregates.ProductAggregate
         {
             _price = newPrice;
         }
-        
+
+        public void UpdateProduct(string name, string description, double price, int stock, int categoryId)
+        {
+            _name = name;
+            _description = description;
+            _price = price;
+            _stockQuantity = stock;
+            _categoryId = categoryId;
+        }
     }
 }
