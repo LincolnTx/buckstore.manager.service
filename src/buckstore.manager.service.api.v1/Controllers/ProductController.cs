@@ -49,5 +49,13 @@ namespace buckstore.manager.service.api.v1.Controllers
 
             return Response(200, response);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] DeleteProductCommand deleteProductCommand)
+        {
+            var response = await _mediator.Send(deleteProductCommand);
+
+            return Response(200, response);
+        }
     }
 }

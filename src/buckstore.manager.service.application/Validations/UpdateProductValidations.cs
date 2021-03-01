@@ -9,13 +9,22 @@ namespace buckstore.manager.service.application.Validations
     {
         public UpdateProductValidations()
         {
+            ValidateProductCode();
             ValidateName();
             ValidateDescription();
             ValidatePrice();
             ValidateStock();
             ValidateCategory();
         }
-        
+
+        private void ValidateProductCode()
+        {
+            RuleFor(product => product.ProductCode)
+                .NotEmpty()
+                .WithMessage("Código do produto deve ser informado para realizar essa alteração")
+                .WithErrorCode("001");
+        }
+
         protected void ValidateName()
         {
             RuleFor(product => product.Name)

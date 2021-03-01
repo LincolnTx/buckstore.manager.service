@@ -7,5 +7,6 @@ namespace buckstore.manager.service.domain.Aggregates.ProductAggregate
     public interface IProductRepository : IRepository<Product>
     {
         Task<Product> FindById(Guid id);
+        void Delete(Product product);
     }
 }

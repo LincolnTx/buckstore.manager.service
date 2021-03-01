@@ -39,7 +39,8 @@ namespace buckstore.manager.service.application.QueryHandlers
                 }
                 catch (Exception e)
                 {
-                    await _bus.Publish(new ExceptionNotification("002", "Código de produto inválido", 
+                    await _bus.Publish(new ExceptionNotification("002",
+                        "Produto não encontrado. É possível que o código de produto seja inválido", 
                         "productCode"), CancellationToken.None);
                     
                     return null;

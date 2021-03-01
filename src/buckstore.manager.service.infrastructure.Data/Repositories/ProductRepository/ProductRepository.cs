@@ -16,5 +16,10 @@ namespace buckstore.manager.service.infrastructure.Data.Repositories.ProductRepo
         {
             return  await _dbSet.FindAsync(id);
         }
+
+        public void Delete(Product product)
+        {
+             _dbSet.Remove(product);
+        }
     }
 }
