@@ -12,6 +12,7 @@
     
     <ItemGroup>
       <ProjectReference Include="..\buckstore.manager.service.application\buckstore.manager.service.application.csproj" />
+      <ProjectReference Include="..\buckstore.manager.service.environment\buckstore.manager.service.environment.csproj" />
       <ProjectReference Include="..\buckstore.manager.service.infrastructure.Data\buckstore.manager.service.infrastructure.Data.csproj" />
     </ItemGroup>
     

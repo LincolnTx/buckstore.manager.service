@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using buckstore.manager.service.api.v1.Filters.AuthorizationFilters;
 using buckstore.manager.service.application.Commands;
 using buckstore.manager.service.application.Queries;
 using buckstore.manager.service.domain.Exceptions;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace buckstore.manager.service.api.v1.Controllers
 {
     
+    [Authorize(nameof(UserTypes.Admin), nameof(UserTypes.Employee))]
     public class ProductController : BaseController
     {
         private readonly IMediator _mediator;
@@ -24,22 +26,6 @@ namespace buckstore.manager.service.api.v1.Controllers
             var commandResponse = await _mediator.Send(createProductCommand);
 
             return Response(201, commandResponse);
-        }
-
-        [HttpGet("list")]
-        public async Task<IActionResult> ListProducts([FromQuery] int pageNumber, [FromQuery] int pageSize)
-        {
-            var queryResponse = await _mediator.Send(new ListProductsQuery(pageNumber, pageSize));
-
-            return Response(200, queryResponse);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] Guid productCode)
-        {
-            var response = await _mediator.Send(new FindProductByIdQuery(productCode));
-
-            return Response(200, response);
         }
 
         [HttpPut]
