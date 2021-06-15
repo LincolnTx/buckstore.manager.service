@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using buckstore.manager.service.api.v1.Filters.AuthorizationFilters;
 using buckstore.manager.service.application.Commands;
-using buckstore.manager.service.application.Queries;
 using buckstore.manager.service.domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
