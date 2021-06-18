@@ -34,6 +34,7 @@ namespace buckstore.manager.service.api.v1
 			services.AddMediatR(typeof(CommandHandler));
 			services.AddScoped<GlobalExceptionFilterAttribute>();
 			services.AddDatabaseSetup();
+			services.AddKafka(Configuration);
 			
 			services.AddControllers();
 		}

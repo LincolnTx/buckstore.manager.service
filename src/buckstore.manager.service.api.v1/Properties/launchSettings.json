@@ -36,7 +36,8 @@
         "KafkaConfiguration__ManagerToProductsDelete": "manager-to-products-delete",
         "KafkaConfiguration__ManagerToOrdersCreate": "manager-to-orders-create",
         "KafkaConfiguration__ManagerToOrdersUpdate": "manager-to-orders-update",
-        "KafkaConfiguration__ManagerToOrdersDelete": "manager-to-orders-delete"
+        "KafkaConfiguration__ManagerToOrdersDelete": "manager-to-orders-delete",
+        "KafkaConfiguration__OrdersToManager": "orders-to-manager"
       }
     }
   }

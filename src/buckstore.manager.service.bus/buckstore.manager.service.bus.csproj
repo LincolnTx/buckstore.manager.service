@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="MessageBroker\Kafka\Producers" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MassTransit.AspNetCore" Version="7.2.0" />
+      <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.0" />
+      <PackageReference Include="MassTransit.Kafka" Version="7.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\buckstore.manager.service.application\buckstore.manager.service.application.csproj" />
+    </ItemGroup>
+
+</Project>
