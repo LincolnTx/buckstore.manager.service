@@ -7,10 +7,10 @@ namespace buckstore.manager.service.application.Commands
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public int InitialStock { get; set; }
         public int Category { get; set; }
-        
+
         public override bool IsValid()
         {
             ValidationResult = new CreateProductValidations().Validate(this);

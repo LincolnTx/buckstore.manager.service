@@ -26,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Environment", "05 - En
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buckstore.manager.service.environment", "src\buckstore.manager.service.environment\buckstore.manager.service.environment.csproj", "{DD489939-444A-4CA8-B792-B8BFB41A4DFF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.3 - Bus", "04.3 - Bus", "{1B02592C-51D6-44A3-BDBF-2BCBD43553BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buckstore.manager.service.bus", "src\buckstore.manager.service.bus\buckstore.manager.service.bus.csproj", "{D701CC32-7D4B-4A05-B00C-0AD749E6149C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,10 @@ Global
 		{DD489939-444A-4CA8-B792-B8BFB41A4DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD489939-444A-4CA8-B792-B8BFB41A4DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD489939-444A-4CA8-B792-B8BFB41A4DFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D701CC32-7D4B-4A05-B00C-0AD749E6149C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D701CC32-7D4B-4A05-B00C-0AD749E6149C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D701CC32-7D4B-4A05-B00C-0AD749E6149C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D701CC32-7D4B-4A05-B00C-0AD749E6149C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2FA777D6-8B26-4380-9ABF-837C1C2A59E0} = {9DBA9B17-4908-41F9-84F4-F92B8A7B9687}
@@ -66,5 +74,7 @@ Global
 		{EC0571D6-5D42-4828-85EA-2BB4B638B875} = {BF8E0603-2108-4735-A96B-6B4C19ED5F57}
 		{E5E4E82D-0B13-4360-A6E5-011BFC97FDA7} = {BF7DB858-D3FD-4350-BC24-E930F7B9B7C3}
 		{DD489939-444A-4CA8-B792-B8BFB41A4DFF} = {685D7256-FB2F-4F15-A595-F801D079808F}
+		{1B02592C-51D6-44A3-BDBF-2BCBD43553BF} = {B1DCD034-4E6C-4E92-A38D-150B18B65BD3}
+		{D701CC32-7D4B-4A05-B00C-0AD749E6149C} = {1B02592C-51D6-44A3-BDBF-2BCBD43553BF}
 	EndGlobalSection
 EndGlobal
