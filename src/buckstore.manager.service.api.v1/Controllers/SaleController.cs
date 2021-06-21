@@ -10,6 +10,7 @@ namespace buckstore.manager.service.api.v1.Controllers
 {
     public class SaleController : BaseController
     {
+        // TODO: esse controller deve ser deleatado, e passada pra a api de order
         private readonly IMediator _mediator;
         public SaleController(INotificationHandler<ExceptionNotification> notifications, IMediator mediator) 
             : base(notifications)

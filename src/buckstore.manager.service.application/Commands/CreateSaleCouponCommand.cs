@@ -10,7 +10,7 @@ namespace buckstore.manager.service.application.Commands
         public string Coupon { get; set; }
         public int DiscountPercent { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public double MinimumPrice { get; set; }
+        public decimal MinimumPrice { get; set; }
         public int CategoryClassification { get; set; }
         
         public override bool IsValid()
