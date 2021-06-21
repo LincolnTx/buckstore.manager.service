@@ -1,11 +1,12 @@
 ﻿using System;
-using buckstore.manager.service.application.IntegrationEvents;
-using buckstore.manager.service.bus.MessageBroker.Kafka.Consumer;
+using MassTransit;
+using MassTransit.Registration;
+using MassTransit.KafkaIntegration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using buckstore.manager.service.environment.Configuration;
-using MassTransit;
-using MassTransit.Registration;
+using buckstore.manager.service.application.IntegrationEvents;
+using buckstore.manager.service.bus.MessageBroker.Kafka.Consumer;
 
 namespace buckstore.manager.service.infrastructure.CrossCutting.IoC.Configurations
 {
@@ -55,7 +56,9 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC.Configuratio
 
         static void AddProducers(this IRiderRegistrationConfigurator rider)
         {
-            
+            rider.AddProducer<ProductCreatedIntegrationEvent>(_kafkaConfiguration.ManagerToProductsCreate);
+            rider.AddProducer<ProductUpdatedIntegrationEvent>(_kafkaConfiguration.ManagerToProductsUpdate);
+            rider.AddProducer<ProductDeletedIntegrationEvent>(_kafkaConfiguration.ManagerToProductsDelete);
         }
     }
 }

@@ -1,13 +1,16 @@
-﻿using buckstore.manager.service.domain.Aggregates.ProductAggregate;
+﻿using MediatR;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using buckstore.manager.service.application.Adapters.MessageBroker;
+using buckstore.manager.service.application.IntegrationEvents;
+using buckstore.manager.service.bus.MessageBroker.Kafka.Producers;
+using buckstore.manager.service.domain.Aggregates.ProductAggregate;
 using buckstore.manager.service.domain.Exceptions;
 using buckstore.manager.service.domain.SeedWork;
 using buckstore.manager.service.environment.Configuration;
 using buckstore.manager.service.infrastructure.Data.Context;
 using buckstore.manager.service.infrastructure.Data.Repositories.ProductRepository;
 using buckstore.manager.service.infrastructure.Data.UnitOfWork;
-using MediatR;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace buckstore.manager.service.infrastructure.CrossCutting.IoC
 {
@@ -18,6 +21,7 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC
 			RegisterData(services);
 			RegisterMediatR(services);
 			RegisterEnvironment(services, configuration);
+			RegisterProducers(services);
 		}
 
 		public static void RegisterData(IServiceCollection services)
@@ -35,6 +39,13 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC
 		public static void RegisterEnvironment(IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddSingleton(configuration.GetSection("JwtSettings").Get<JwtSettings>());
+		}
+
+		public static void RegisterProducers(IServiceCollection services)
+		{
+			services.AddScoped<IMessageProducer<ProductCreatedIntegrationEvent>, KafkaProducer<ProductCreatedIntegrationEvent>>();
+			services.AddScoped<IMessageProducer<ProductUpdatedIntegrationEvent>, KafkaProducer<ProductUpdatedIntegrationEvent>>();
+			services.AddScoped<IMessageProducer<ProductDeletedIntegrationEvent>, KafkaProducer<ProductDeletedIntegrationEvent>>();
 		}
 	}
 }
