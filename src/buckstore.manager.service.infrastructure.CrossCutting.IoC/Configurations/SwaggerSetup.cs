@@ -23,7 +23,7 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC.Configuratio
 					Type = SecuritySchemeType.Http,
 					Scheme = "bearer"
 				});
-				
+
 				c.AddSecurityRequirement(new OpenApiSecurityRequirement
 				{
 					{
@@ -40,10 +40,10 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC.Configuratio
 				// c.OperationFilter<RemoveVersionParameterFilter>();
 				// c.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
 			});
-			
+
 			services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 		}
-		
+
 		public static void UseSwaggerSetup(this IApplicationBuilder app)
 		{
 			if (app == null) throw new ArgumentNullException(nameof(app));
@@ -54,7 +54,7 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC.Configuratio
 			});
 		}
 	}
-	
+
 	public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
 	{
 		public void Configure(SwaggerGenOptions options)
@@ -63,7 +63,7 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC.Configuratio
 			{
 				Version = "v1",
 				Title = "BuckStore Manager Api",
-				Description = "Api responsável pelas assões de gerenciamento do E-Commerce",
+                Description = "Api responsável pelas açõe de gerenciamento do E-Commerce",
 				Contact = new OpenApiContact { Name = "Lincoln Teixeira", Email = "lincolnsf98@gmail.com" }
 			});
 		}

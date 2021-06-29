@@ -8,6 +8,7 @@ using buckstore.manager.service.application.Commands.CommandResponseDTOs;
 
 namespace buckstore.manager.service.application.CommandHandlers
 {
+    //TODO: REMOVER ESSES COMMAND E  COMMAND HANDLER
     public class CreateSaleCouponCommandHandler : CommandHandler, IRequestHandler<CreateSaleCouponCommand, CreateCouponDto>
     {
         public CreateSaleCouponCommandHandler(IUnitOfWork uow, IMediator bus, INotificationHandler<ExceptionNotification> notifications)
