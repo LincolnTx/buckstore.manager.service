@@ -2,17 +2,18 @@
 using MediatR;
 using System.Threading.Tasks;
 using buckstore.manager.service.api.v1.Filters.AuthorizationFilters;
+using buckstore.manager.service.api.v1.ResponseDtos;
 using Microsoft.AspNetCore.Mvc;
 using buckstore.manager.service.application.Commands;
+using buckstore.manager.service.application.Commands.CommandResponseDTOs;
 using buckstore.manager.service.domain.Exceptions;
 
 namespace buckstore.manager.service.api.v1.Controllers
 {
     public class SaleController : BaseController
     {
-        // TODO: esse controller deve ser deleatado, e passada pra a api de order
         private readonly IMediator _mediator;
-        public SaleController(INotificationHandler<ExceptionNotification> notifications, IMediator mediator) 
+        public SaleController(INotificationHandler<ExceptionNotification> notifications, IMediator mediator)
             : base(notifications)
         {
             _mediator = mediator;
@@ -31,7 +32,7 @@ namespace buckstore.manager.service.api.v1.Controllers
         {
             var response = await _mediator.Send(createCouponCommand);
 
-            return Response(201, response);
+            return Response(Ok(new BaseResponseDto<CreateCouponDto>(true, response)));
         }
     }
 }

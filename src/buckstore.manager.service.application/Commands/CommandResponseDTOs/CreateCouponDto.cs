@@ -2,6 +2,6 @@
 {
     public class CreateCouponDto
     {
-        public string Coupon { get; set; }
+        public string CouponCode { get; set; }
     }
 }
