@@ -32,6 +32,9 @@ namespace buckstore.manager.service.infrastructure.Data.Mappings.Database
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("MinimumValue")
                 .IsRequired();
+
+            builder.HasIndex(sale => sale.Id)
+                .IsUnique();
         }
     }
 }

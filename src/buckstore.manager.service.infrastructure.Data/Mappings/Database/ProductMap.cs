@@ -42,8 +42,6 @@ namespace buckstore.manager.service.infrastructure.Data.Mappings.Database
                 .HasForeignKey("_categoryId")
                 .OnDelete(DeleteBehavior.SetNull);
 
-            builder.HasIndex(product => product.Id)
-                .IsUnique();
         }
     }
 }
