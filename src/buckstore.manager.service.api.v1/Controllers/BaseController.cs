@@ -24,22 +24,21 @@ namespace buckstore.manager.service.api.v1.Controllers
 			return (!_notifications.HasNotifications());
 		}
 
-		protected new IActionResult Response(int statusCode, object result = null)
-		{
-			if (IsValidOperation())
-			{
-				return StatusCode(statusCode, new
-				{
-					success = true,
-					data = result
-				});
-			}
+        protected new IActionResult Response(IActionResult action)
+        {
+            if (IsValidOperation())
+            {
+                return action;
+            }
 
-			return BadRequest(new
-			{
-				success = false,
-				errors = _notifications.GetNotifications()
-			});
-		}
+            return BadRequest
+            (
+                new
+                {
+                    success = false,
+                    errors = _notifications.GetNotifications()
+                }
+            );
+        }
 	}
 }
