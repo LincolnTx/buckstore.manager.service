@@ -35,7 +35,7 @@ namespace buckstore.manager.service.api.v1
 			services.AddScoped<GlobalExceptionFilterAttribute>();
 			services.AddDatabaseSetup();
 			services.AddKafka(Configuration);
-			
+
 			services.AddControllers();
 		}
 
@@ -46,11 +46,11 @@ namespace buckstore.manager.service.api.v1
 				app.UseDeveloperExceptionPage();
 			}
 
-			//app.UseHttpsRedirection();
-			//app.UseAuthorization();
-
 			app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 			app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 			app.UseSwaggerSetup();
 
 			app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

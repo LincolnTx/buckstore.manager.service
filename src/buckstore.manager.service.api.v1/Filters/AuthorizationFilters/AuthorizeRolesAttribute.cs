@@ -42,8 +42,8 @@ namespace buckstore.manager.service.api.v1.Filters.AuthorizationFilters
             {
                 var tokenClaims = GetTokenClaims(token);
                 var userRole = tokenClaims.FirstOrDefault(claim => claim.Type == "Role");
-                var isRoleValid = _roles.Contains(userRole.Value);
-                
+                var isRoleValid = _roles.Contains(userRole.Value) || _roles.Length == 0;
+
                 if (!isRoleValid)
                 {
                     context.Result = new UnauthorizedResult();
@@ -61,7 +61,7 @@ namespace buckstore.manager.service.api.v1.Filters.AuthorizationFilters
                 _logger.LogWarning("Usuário não passou um token na rota {0}", context.HttpContext.Request.Path);
             }
         }
-        
+
         private IEnumerable<Claim> GetTokenClaims(string token)
         {
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
