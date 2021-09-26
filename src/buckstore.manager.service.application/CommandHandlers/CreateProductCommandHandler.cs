@@ -1,6 +1,10 @@
-﻿using MediatR;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using buckstore.manager.service.domain.SeedWork;
 using buckstore.manager.service.domain.Exceptions;
 using buckstore.manager.service.application.Commands;
@@ -12,11 +16,13 @@ namespace buckstore.manager.service.application.CommandHandlers
     public class CreateProductCommandHandler : CommandHandler, IRequestHandler<CreateProductCommand, bool>
     {
         private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
         public CreateProductCommandHandler(IUnitOfWork uow, IMediator bus,
-            INotificationHandler<ExceptionNotification> notifications, IProductRepository productRepository)
+            INotificationHandler<ExceptionNotification> notifications, IProductRepository productRepository, IMapper mapper)
             : base(uow, bus, notifications)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
         public async Task<bool> Handle(CreateProductCommand request, CancellationToken cancellationToken)
@@ -39,12 +45,18 @@ namespace buckstore.manager.service.application.CommandHandlers
                 return false;
             }
 
+            var images = _mapper.Map<IEnumerable<ProductsImagesCollection>>(product.Images);
+            await _productRepository.InsertProductImage(images);
+
+            var imagesId = images.Select(img => img.ImageId);
+
             await _bus.Publish(new ProductCreatedIntegrationEvent(product.Id,
                     product.Name,
                     product.Description,
                     product.Price,
                     product.Stock,
-                    request.Category),
+                    request.Category,
+                    imagesId),
                 cancellationToken);
             return true;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection.Metadata;
@@ -13,8 +14,9 @@ namespace buckstore.manager.service.application.IntegrationEvents
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
+        public IEnumerable<string> ImagesId { get; set; }
 
-        public ProductCreatedIntegrationEvent(Guid id, string name, string description, decimal price, int quantity, int categoryId)
+        public ProductCreatedIntegrationEvent(Guid id, string name, string description, decimal price, int quantity, int categoryId, IEnumerable<string> imagesId)
             : base(DateTime.Now)
         {
             Id = id;
@@ -23,6 +25,7 @@ namespace buckstore.manager.service.application.IntegrationEvents
             Price = price;
             Quantity = quantity;
             CategoryId = categoryId;
+            ImagesId = imagesId;
         }
 
 
