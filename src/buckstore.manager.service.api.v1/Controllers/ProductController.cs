@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace buckstore.manager.service.api.v1.Controllers
 {
 
-    //[Authorize(nameof(UserTypes.Admin), nameof(UserTypes.Employee))]
+    [Authorize(nameof(UserTypes.Admin), nameof(UserTypes.Employee))]
     public class ProductController : BaseController
     {
         private readonly IMediator _mediator;
