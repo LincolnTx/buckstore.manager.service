@@ -1,9 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using buckstore.manager.service.api.v1.Filters.AuthorizationFilters;
+using buckstore.manager.service.api.v1.Requests;
 using buckstore.manager.service.api.v1.ResponseDtos;
 using buckstore.manager.service.application.Commands;
 using buckstore.manager.service.domain.Exceptions;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace buckstore.manager.service.api.v1.Controllers
@@ -20,8 +24,14 @@ namespace buckstore.manager.service.api.v1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand createProductCommand)
+        public async Task<IActionResult> CreateProduct([FromForm] CreateProductRequestDto request)
         {
+            var uploadFiles = new List<byte[]>();
+            ConvertFile(request.Images, ref uploadFiles);
+
+            var createProductCommand = new CreateProductCommand(request.Name, request.Description, request.Price,
+                request.InitialStock, request.Category, uploadFiles);
+
             var commandResponse = await _mediator.Send(createProductCommand);
 
             return Response(Ok(new BaseResponseDto<bool>(true, commandResponse)));
@@ -42,5 +52,19 @@ namespace buckstore.manager.service.api.v1.Controllers
 
             return Response(Ok(new BaseResponseDto<bool>(true, response)));
         }
+
+        // criar endpoint de buscar imagens de um produto
+
+        private void ConvertFile(IFormFileCollection files, ref List<byte[]> bufferFiles)
+        {
+            foreach (var file in files)
+            {
+                using var ms = new MemoryStream();
+                file.CopyTo(ms);
+                var fileBytes = ms.ToArray();
+                bufferFiles.Add(fileBytes);
+            }
+        }
     }
+
 }

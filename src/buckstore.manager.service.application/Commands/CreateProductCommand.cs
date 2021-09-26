@@ -13,6 +13,16 @@ namespace buckstore.manager.service.application.Commands
         public int Category { get; set; }
         public List<byte[]> Images { get; set; }
 
+        public CreateProductCommand(string name, string description, decimal price, int initialStock, int category, List<byte[]> images)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+            InitialStock = initialStock;
+            Category = category;
+            Images = images;
+        }
+
         public override bool IsValid()
         {
             ValidationResult = new CreateProductValidations().Validate(this);
