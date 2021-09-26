@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using buckstore.manager.service.domain.SeedWork;
+using buckstore.manager.service.domain.Exceptions;
 using buckstore.manager.service.application.Commands;
 using buckstore.manager.service.application.IntegrationEvents;
 using buckstore.manager.service.domain.Aggregates.ProductAggregate;
-using buckstore.manager.service.domain.Exceptions;
-using buckstore.manager.service.domain.SeedWork;
 
 namespace buckstore.manager.service.application.CommandHandlers
 {
@@ -28,7 +28,7 @@ namespace buckstore.manager.service.application.CommandHandlers
             }
 
             var product = new Product(request.Name.ToLowerInvariant(), request.Description, request.Price,
-                request.InitialStock, request.Category);
+                request.InitialStock, request.Category, request.Images);
 
             _productRepository.Add(product);
 
@@ -44,7 +44,7 @@ namespace buckstore.manager.service.application.CommandHandlers
                     product.Description,
                     product.Price,
                     product.Stock,
-                    product.Category.Id),
+                    request.Category),
                 cancellationToken);
             return true;
         }

@@ -1,4 +1,5 @@
-﻿using buckstore.manager.service.application.Validations;
+﻿using System.Collections.Generic;
+using buckstore.manager.service.application.Validations;
 using MediatR;
 
 namespace buckstore.manager.service.application.Commands
@@ -10,6 +11,7 @@ namespace buckstore.manager.service.application.Commands
         public decimal Price { get; set; }
         public int InitialStock { get; set; }
         public int Category { get; set; }
+        public List<byte[]> Images { get; set; }
 
         public override bool IsValid()
         {

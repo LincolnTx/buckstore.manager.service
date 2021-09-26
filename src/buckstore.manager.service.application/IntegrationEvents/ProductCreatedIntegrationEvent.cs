@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection.Metadata;
 
 namespace buckstore.manager.service.application.IntegrationEvents
 {
@@ -11,7 +14,7 @@ namespace buckstore.manager.service.application.IntegrationEvents
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
 
-        public ProductCreatedIntegrationEvent(Guid id, string name, string description, decimal price, int quantity, int categoryId) 
+        public ProductCreatedIntegrationEvent(Guid id, string name, string description, decimal price, int quantity, int categoryId)
             : base(DateTime.Now)
         {
             Id = id;
@@ -21,5 +24,7 @@ namespace buckstore.manager.service.application.IntegrationEvents
             Quantity = quantity;
             CategoryId = categoryId;
         }
+
+
     }
 }
