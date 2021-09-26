@@ -31,7 +31,8 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ISaleRepository, SaleRepository>();
-		}
+            services.AddSingleton<MongoDbContext>();
+        }
 
 		public static void RegisterMediatR(IServiceCollection services)
 		{
