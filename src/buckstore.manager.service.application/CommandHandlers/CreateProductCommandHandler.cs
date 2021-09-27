@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MediatR;
 using System.Threading;
@@ -33,8 +32,9 @@ namespace buckstore.manager.service.application.CommandHandlers
                 return false;
             }
 
+            var productImages = _mapper.Map<IEnumerable<ProductsImage>>(request.Images);
             var product = new Product(request.Name.ToLowerInvariant(), request.Description, request.Price,
-                request.InitialStock, request.Category, request.Images);
+                request.InitialStock, request.Category, productImages);
 
             _productRepository.Add(product);
 
