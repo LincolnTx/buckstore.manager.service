@@ -12,7 +12,8 @@ namespace buckstore.manager.service.application.AutoMapper
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     ImageId = src.Id.ToString(),
-                    Image = src.Image
+                    Image = src.Image,
+                    ContentType = src.ContentType
                 });
         }
     }

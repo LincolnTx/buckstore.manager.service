@@ -12,5 +12,6 @@ namespace buckstore.manager.service.domain.Aggregates.ProductAggregate
         public string ImageId { get; set; }
 
         public byte[]  Image { get; set; }
+        public string ContentType { get; set; }
     }
 }
