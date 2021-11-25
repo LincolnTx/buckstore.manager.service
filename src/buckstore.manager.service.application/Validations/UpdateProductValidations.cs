@@ -29,10 +29,7 @@ namespace buckstore.manager.service.application.Validations
         {
             RuleFor(product => product.Name)
                 .NotEmpty()
-                .WithMessage("Campo Nome obrigatório").WithErrorCode("001")
-                .MaximumLength(100)
-                .WithMessage("Nome do produto pode ter no máximo 100 caracteres")
-                .WithErrorCode("002");
+                .WithMessage("Campo Nome obrigatório").WithErrorCode("001");
         }
 
         protected void ValidateDescription()
@@ -74,7 +71,4 @@ namespace buckstore.manager.service.application.Validations
             return availableCategories.Contains(category);
         }
     }
-    
-    
-    
 }

@@ -46,7 +46,7 @@ namespace buckstore.manager.service.api.v1
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 			app.UseRouting();
 
             app.UseAuthentication();
