@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using buckstore.manager.service.api.v1.Filters.AuthorizationFilters;
@@ -47,8 +48,9 @@ namespace buckstore.manager.service.api.v1.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteProductCommand deleteProductCommand)
+        public async Task<IActionResult> Delete([FromQuery] string productCode)
         {
+            var deleteProductCommand = new DeleteProductCommand{ProductCode = Guid.Parse(productCode)};
             var response = await _mediator.Send(deleteProductCommand);
 
             return Response(Ok(new BaseResponseDto<bool>(true, response)));
