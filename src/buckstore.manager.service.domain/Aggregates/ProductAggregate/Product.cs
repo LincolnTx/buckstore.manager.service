@@ -15,6 +15,7 @@ namespace buckstore.manager.service.domain.Aggregates.ProductAggregate
         private int _stockQuantity;
         public int Stock => _stockQuantity;
         private int _categoryId;
+        public int CategoryId => _categoryId;
         public ProductCategory Category { get; private set; }
         public ICollection<ProductsImage> Images { get; private set; }
 
