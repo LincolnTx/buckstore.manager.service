@@ -46,9 +46,10 @@ namespace buckstore.manager.service.application.CommandHandlers
             }
 
             var images = _mapper.Map<IEnumerable<ProductsImagesCollection>>(product.Images);
-            await _productRepository.InsertProductImage(images);
+            if (images.Any())
+                await _productRepository.InsertProductImage(images);
 
-            var imagesId = images.Select(img => img.ImageId);
+            var imagesId = images.Any() ? images.Select(img => img.ImageId) : new string[1];
 
             await _bus.Publish(new ProductCreatedIntegrationEvent(product.Id,
                     product.Name,

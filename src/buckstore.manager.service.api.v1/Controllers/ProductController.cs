@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using buckstore.manager.service.api.v1.Filters.AuthorizationFilters;
 using buckstore.manager.service.api.v1.Requests;
@@ -29,7 +30,11 @@ namespace buckstore.manager.service.api.v1.Controllers
         public async Task<IActionResult> CreateProduct([FromForm] CreateProductRequestDto request)
         {
             var uploadFiles = new List<ProductImageInformationDto>();
-            ConvertFile(request.Images, ref uploadFiles);
+            if (request.Images != null)
+            {
+
+                ConvertFile(request.Images, ref uploadFiles);
+            }
 
             var createProductCommand = new CreateProductCommand(request.Name, request.Description, request.Price,
                 request.InitialStock, request.Category, uploadFiles);
