@@ -30,7 +30,7 @@ namespace buckstore.manager.service.application.CommandHandlers
                 return default;
             }
 
-            var sale = new Sale(request.DiscountPercent, request.ExpirationDate, request.CouponCode,
+            var sale = new Sale(request.DiscountPercent, request.ExpirationDate, request.CouponCode.ToUpperInvariant(),
                 request.MinimumPrice);
 
             _saleRepository.Add(sale);
