@@ -2,6 +2,7 @@
 using MediatR;
 using System.Threading.Tasks;
 using buckstore.manager.service.api.v1.Filters.AuthorizationFilters;
+using buckstore.manager.service.api.v1.Requests;
 using buckstore.manager.service.api.v1.ResponseDtos;
 using Microsoft.AspNetCore.Mvc;
 using buckstore.manager.service.application.Commands;
@@ -22,10 +23,14 @@ namespace buckstore.manager.service.api.v1.Controllers
         }
 
         [HttpGet]
-        [Authorize(nameof(UserTypes.Admin), nameof(UserTypes.Employee))]
-        public async Task<IActionResult> Find([FromQuery] Guid saleId)
+        [Authorize]
+        public async Task<IActionResult> Find([FromQuery] bool onlyValid)
         {
-            throw new NotImplementedException();
+            var request = new GetAllCouponsQuery {OnlyValid = onlyValid};
+
+            var response = await _mediator.Send(request);
+
+            return Response(Ok(new BaseResponseDto<AllCouponsResponseDto>(true, response)));
         }
 
         [HttpGet("/manager/validate/{code}")]
@@ -46,5 +51,16 @@ namespace buckstore.manager.service.api.v1.Controllers
 
             return Response(Ok(new BaseResponseDto<CreateCouponDto>(true, response)));
         }
+
+        [HttpPatch("/manager/sale/{id}")]
+        [Authorize(nameof(UserTypes.Admin), nameof(UserTypes.Employee))]
+        public async Task<IActionResult> Edit(Guid id, [FromBody]EditSaleRequestDto editSale)
+        {
+            var response = await _mediator.Send(new EditSaleCommand(id, editSale.ExpDate));
+
+            return Response(Ok(new BaseResponseDto<CouponResponseDto>(true, response)));
+        }
+
+        // fazer delete
     }
 }

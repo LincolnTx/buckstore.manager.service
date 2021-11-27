@@ -6,10 +6,13 @@ namespace buckstore.manager.service.domain.Aggregates.SalesAggregate
     public class Sale : Entity, IAggregateRoot
     {
         private int _discountPercentage;
+        public int DiscountPercentage => _discountPercentage;
         private DateTime _expirationDate;
+        public DateTime ExpirationDate => _expirationDate;
         private string _code;
         public string Code => _code;
         private decimal _minimumValue;
+        public decimal MinValue => _minimumValue;
 
         public Sale(int discountPercentage, DateTime expirationDate, string code, decimal minimumValue)
         {
@@ -37,6 +40,11 @@ namespace buckstore.manager.service.domain.Aggregates.SalesAggregate
             }
 
             return string.Empty;
+        }
+
+        public void EditExpTime(DateTime expTime)
+        {
+            _expirationDate = expTime;
         }
     }
 }
