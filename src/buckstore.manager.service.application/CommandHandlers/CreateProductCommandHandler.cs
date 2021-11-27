@@ -49,7 +49,7 @@ namespace buckstore.manager.service.application.CommandHandlers
             if (images.Any())
                 await _productRepository.InsertProductImage(images);
 
-            var imagesId = images.Any() ? images.Select(img => img.ImageId) : new string[1];
+            var imagesId = images.Any() ? images.Select(img => img.ImageId) : new string[] {"none"};
 
             await _bus.Publish(new ProductCreatedIntegrationEvent(product.Id,
                     product.Name,
