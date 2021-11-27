@@ -71,7 +71,8 @@ namespace buckstore.manager.service.api.v1.Filters.AuthorizationFilters
                 ValidateAudience = false,
                 ValidIssuer = _jwtSettings.TokenIssuer,
                 ValidAudience = _jwtSettings.Audience,
-                IssuerSigningKey = new SymmetricSecurityKey(key)
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateLifetime = false
             };
 
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
