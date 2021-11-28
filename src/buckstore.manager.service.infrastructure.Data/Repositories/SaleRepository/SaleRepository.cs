@@ -14,5 +14,10 @@ namespace buckstore.manager.service.infrastructure.Data.Repositories.SaleReposit
         {
             return _dbSet.Find(id);
         }
+
+        public void Delete(Sale sale)
+        {
+            _dbSet.Remove(sale);
+        }
     }
 }

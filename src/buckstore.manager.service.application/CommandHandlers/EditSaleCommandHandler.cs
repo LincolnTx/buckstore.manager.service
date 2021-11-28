@@ -25,6 +25,11 @@ namespace buckstore.manager.service.application.CommandHandlers
 
         public async Task<CouponResponseDto> Handle(EditSaleCommand request, CancellationToken cancellationToken)
         {
+            if (!request.IsValid())
+            {
+                NotifyValidationErrors(request);
+                return default;
+            }
             var sale = _saleRepository.FindById(request.Id);
 
             if (sale == null)

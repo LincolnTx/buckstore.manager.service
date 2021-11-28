@@ -44,7 +44,7 @@ namespace buckstore.manager.service.api.v1.Controllers
         }
 
         [HttpPost]
-        [Authorize(nameof(UserTypes.Admin))]
+        [Authorize(nameof(UserTypes.Admin),nameof(UserTypes.Employee))]
         public async Task<IActionResult> Create([FromBody] CreateSaleCouponCommand createCouponCommand)
         {
             var response = await _mediator.Send(createCouponCommand);
@@ -61,6 +61,13 @@ namespace buckstore.manager.service.api.v1.Controllers
             return Response(Ok(new BaseResponseDto<CouponResponseDto>(true, response)));
         }
 
-        // fazer delete
+        [HttpDelete("/manager/sale/{id}")]
+        [Authorize(nameof(UserTypes.Admin), nameof(UserTypes.Employee))]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var response = await _mediator.Send(new DeleteSaleCommand{ Id = id });
+
+            return Response(Ok(new BaseResponseDto<bool>(true, response)));
+        }
     }
 }
