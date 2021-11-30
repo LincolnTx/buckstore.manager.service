@@ -16,12 +16,8 @@ namespace buckstore.manager.service.api.v1
 			CreateHostBuilder(args).Build().Run();
 		}
 
-		public static IHostBuilder CreateHostBuilder(string[] args) =>
-			Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://*:3003");
-                });
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
 	}
 }
