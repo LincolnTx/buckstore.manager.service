@@ -11,5 +11,6 @@
         public string ManagerToOrdersUpdate { get; set; }
         public string ManagerToOrdersDelete { get; set; }
         public string OrdersToManager { get; set; }
+        public string ManagerStockUpdate { get; set; }
     }
 }

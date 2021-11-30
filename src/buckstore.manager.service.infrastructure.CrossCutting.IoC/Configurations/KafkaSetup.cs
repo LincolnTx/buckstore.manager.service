@@ -22,16 +22,16 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC.Configuratio
             services.AddMassTransit(bus =>
             {
                 bus.UsingInMemory((ctx, cfg) => cfg.ConfigureEndpoints(ctx));
-                
+
                 bus.AddRider(rider =>
                 {
                     rider.AddConsumers();
                     rider.AddProducers();
-                    
+
                     rider.UsingKafka((ctx, k) =>
                     {
                         k.Host(_kafkaConfiguration.ConnectionString);
-                        
+
                         k.TopicEndpoint<OrderReceivedIntegrationEvent>(_kafkaConfiguration.OrdersToManager, _kafkaConfiguration.Group,
                         e =>
                         {
@@ -42,16 +42,28 @@ namespace buckstore.manager.service.infrastructure.CrossCutting.IoC.Configuratio
                                 options.ReplicationFactor = 1;
                             });
                         });
+
+                        k.TopicEndpoint<StockUpdateIntegrationEvent>(_kafkaConfiguration.ManagerStockUpdate, _kafkaConfiguration.Group,
+                            e =>
+                            {
+                                e.ConfigureConsumer<StockUpdateConsumer>(ctx);
+                                e.CreateIfMissing(options =>
+                                {
+                                    options.NumPartitions = 3;
+                                    options.ReplicationFactor = 1;
+                                });
+                            });
                     });
                 });
             });
-            
+
             services.AddMassTransitHostedService();
         }
 
         static void AddConsumers(this IRegistrationConfigurator rider)
         {
             rider.AddConsumer<OrderReceivedConsumer>();
+            rider.AddConsumer<StockUpdateConsumer>();
         }
 
         static void AddProducers(this IRiderRegistrationConfigurator rider)

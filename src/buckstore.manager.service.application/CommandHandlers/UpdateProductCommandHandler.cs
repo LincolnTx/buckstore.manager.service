@@ -29,6 +29,13 @@ namespace buckstore.manager.service.application.CommandHandlers
             }
 
             var foundProduct = await _productRepository.FindById(request.ProductCode);
+            if (foundProduct == null)
+            {
+                await _bus.Publish(new ExceptionNotification("002", "Erro produto informado não foi encontrado"),
+                    CancellationToken.None);
+                return false;
+            }
+
             foundProduct.UpdateProduct(request.Name, request.Description, request.Price, request.Stock, request.Category);
 
             if (!await Commit())
@@ -43,7 +50,7 @@ namespace buckstore.manager.service.application.CommandHandlers
                     foundProduct.Description,
                     foundProduct.Price,
                     foundProduct.Stock,
-                    foundProduct.Category.Id),
+                    foundProduct.CategoryId),
                 cancellationToken);
             return true;
         }

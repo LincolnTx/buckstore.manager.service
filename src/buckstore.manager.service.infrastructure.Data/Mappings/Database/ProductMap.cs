@@ -1,4 +1,5 @@
-﻿using buckstore.manager.service.domain.Aggregates.ProductAggregate;
+﻿using System;
+using buckstore.manager.service.domain.Aggregates.ProductAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -42,8 +43,13 @@ namespace buckstore.manager.service.infrastructure.Data.Mappings.Database
                 .HasForeignKey("_categoryId")
                 .OnDelete(DeleteBehavior.SetNull);
 
-            builder.HasIndex(product => product.Id)
-                .IsUnique();
+            builder.OwnsMany(product => product.Images, pr =>
+            {
+                pr.WithOwner().HasForeignKey("product_id");
+                pr.Property<Guid>("Id");
+                pr.HasKey("Id");
+            });
+
         }
     }
 }

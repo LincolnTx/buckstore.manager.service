@@ -1,4 +1,6 @@
-﻿using buckstore.manager.service.domain.SeedWork;
+﻿using System.Linq;
+using System.Collections.Generic;
+using buckstore.manager.service.domain.SeedWork;
 
 namespace buckstore.manager.service.domain.Aggregates.ProductAggregate
 {
@@ -13,17 +15,20 @@ namespace buckstore.manager.service.domain.Aggregates.ProductAggregate
         private int _stockQuantity;
         public int Stock => _stockQuantity;
         private int _categoryId;
+        public int CategoryId => _categoryId;
         public ProductCategory Category { get; private set; }
+        public ICollection<ProductsImage> Images { get; private set; }
 
         protected Product() { }
 
-        public Product(string name, string description, decimal price, int stock, int categoryId)
+        public Product(string name, string description, decimal price, int stock, int categoryId, IEnumerable<ProductsImage> images)
         {
             _name = name;
             _description = description;
             _price = price;
             _stockQuantity = stock;
             _categoryId = categoryId;
+            Images = images.ToList();
         }
 
         public void AddStock(int quantity)

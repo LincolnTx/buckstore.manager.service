@@ -17,10 +17,10 @@ namespace buckstore.manager.service.domain.Aggregates.ProductAggregate
        public ProductCategory(int id, string name) : base(id, name)
        {
        }
-       
+
        public static IEnumerable<ProductCategory> List() =>
-           new[] { Gamer, SmartPhones, Pc, Gadgets };
-       
+           new[] { Gamer, SmartPhones, Pc, Gadgets, Hardware, Office };
+
        public static ProductCategory FromName(string name)
        {
            var state = List()
