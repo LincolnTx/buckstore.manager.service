@@ -35,7 +35,7 @@ namespace buckstore.manager.service.application.Validations
             RuleFor(product => product.Price)
                 .NotEmpty()
                 .WithMessage("Obrigatório informar o preço do produto")
-                .WithErrorCode("004");
+                .WithErrorCode("55");
         }
 
         protected void ValidateStock()

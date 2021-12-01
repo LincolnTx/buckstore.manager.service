@@ -23,7 +23,7 @@ namespace buckstore.manager.service.application.CommandHandlers
 		{
 			foreach (var error in message.GetValidationResult().Errors)
 			{
-				_bus.Publish(new ExceptionNotification("001", error.ErrorMessage, error.PropertyName));
+                _bus.Publish(new ExceptionNotification("300", error.ErrorMessage, error.PropertyName));
 			}
 		}
 
