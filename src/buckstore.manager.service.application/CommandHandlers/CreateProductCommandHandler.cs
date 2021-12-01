@@ -40,7 +40,7 @@ namespace buckstore.manager.service.application.CommandHandlers
 
             if (!await Commit())
             {
-                await _bus.Publish(new ExceptionNotification("001",
+                await _bus.Publish(new ExceptionNotification("030",
                     "Erro ao cadastrar produto, tente novamente mais tarde ou entre em contato com o suporte"));
                 return false;
             }
